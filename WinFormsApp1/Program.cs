@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace WinFormsApp1
@@ -11,13 +12,15 @@ namespace WinFormsApp1
         private static IntPtr hookID = IntPtr.Zero;
 
         // Dictionary to map key replacements
-        private static readonly Dictionary<Keys, string> KeyReplacements = new Dictionary<Keys, string>
-        {
-            { Keys.A, "α" },
-            { Keys.B, "β" },
-            { Keys.C, "γ" }
-            // Add more key mappings as needed
-        };
+        //private static readonly Dictionary<Keys, string> KeyReplacements = new Dictionary<Keys, string>
+        //{
+        //    { Keys.A, "α" },
+        //    { Keys.B, "β" },
+        //    { Keys.C, "γ" }
+        //    // Add more key mappings as needed
+        //};
+        public static Dictionary<Keys, string> KeyReplacements = new Dictionary<Keys, string>();
+
 
         /// <summary>
         ///  The main entry point for the application.
@@ -29,6 +32,9 @@ namespace WinFormsApp1
             {
                 // Configure application settings
                 ApplicationConfiguration.Initialize();
+
+                // Load key mappings from JSON file
+                LoadKeyMappings();
 
                 // Set up global keyboard hook
                 hookID = SetHook(HookCallback);
@@ -42,6 +48,59 @@ namespace WinFormsApp1
             catch (Exception ex)
             {
                 LogError($"Application initialization error: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Loads key mappings from a JSON file.
+        /// </summary>
+        private static void LoadKeyMappings()
+        {
+            try
+            {
+                string filePath = "Resources/Keymap/keyMappings.json";
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    Dictionary<string, string> mappings = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+                    KeyReplacements.Clear();
+
+                    foreach (var pair in mappings)
+                    {
+                        if (Enum.TryParse(pair.Key, out Keys key))
+                        {
+                            KeyReplacements[key] = pair.Value;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError($"Error loading key mappings: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Saves key mappings to a JSON file.
+        /// </summary>
+        public static void SaveKeyMappings(Dictionary<Keys, string> mappings)
+        {
+            try
+            {
+                string filePath = "Resources/Keymap/keyMappings.json";
+                var jsonMappings = new Dictionary<string, string>();
+
+                foreach (var pair in mappings)
+                {
+                    jsonMappings[pair.Key.ToString()] = pair.Value;
+                }
+
+                File.WriteAllText(filePath, JsonSerializer.Serialize(jsonMappings, new JsonSerializerOptions { WriteIndented = true }));
+                KeyReplacements = new Dictionary<Keys, string>(mappings);
+            }
+            catch (Exception ex)
+            {
+                LogError($"Error saving key mappings: {ex.Message}");
             }
         }
 
