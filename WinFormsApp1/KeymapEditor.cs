@@ -1,11 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class KeymapEditor : Form
     {
         private Dictionary<Keys, string> keyMappings;
-        public Form1()
+        public KeymapEditor()
         {
             InitializeComponent();
             LoadMappings();
@@ -20,11 +28,6 @@ namespace WinFormsApp1
             {
                 dataGridView1.Rows.Add(pair.Key.ToString(), pair.Value);
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)

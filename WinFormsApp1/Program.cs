@@ -43,7 +43,7 @@ namespace WinFormsApp1
                 Application.ApplicationExit += (sender, args) => UnhookWindowsHookEx(hookID);
 
                 // Run the main application form
-                Application.Run(new Form1());
+                Application.Run(new MainUI());
             }
             catch (Exception ex)
             {

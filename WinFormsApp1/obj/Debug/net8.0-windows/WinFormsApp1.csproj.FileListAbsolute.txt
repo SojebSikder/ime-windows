@@ -20,7 +20,6 @@ D:\All Programs\Project\c#\ime-windows\WinFormsApp1\bin\Debug\net8.0-windows\Win
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.runtimeconfig.json
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.dll
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.pdb
-D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Form1.resources
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.GenerateResource.cache
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
@@ -32,3 +31,5 @@ D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\ref
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
 D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll
+D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.MainUI.resources
+D:\All Programs\Project\c#\ime-windows\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.KeymapEditor.resources
