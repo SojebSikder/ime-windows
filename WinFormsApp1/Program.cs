@@ -1,5 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
@@ -30,24 +33,17 @@ namespace WinFormsApp1
                 // Set up global keyboard hook
                 hookID = SetHook(HookCallback);
 
+                // Ensure the hook is removed when the application exits
+                Application.ApplicationExit += (sender, args) => UnhookWindowsHookEx(hookID);
+
                 // Run the main application form
                 Application.Run(new Form1());
             }
             catch (Exception ex)
             {
-                // Log any initialization errors
                 LogError($"Application initialization error: {ex.Message}");
             }
-            finally
-            {
-                // Ensure hook is always unhooked
-                if (hookID != IntPtr.Zero)
-                {
-                    UnhookWindowsHookEx(hookID);
-                }
-            }
         }
-
 
         /// <summary>
         /// Sets up the low-level keyboard hook
@@ -58,6 +54,9 @@ namespace WinFormsApp1
             {
                 using Process curProcess = Process.GetCurrentProcess();
                 using ProcessModule curModule = curProcess.MainModule;
+
+                if (curModule == null)
+                    throw new Exception("Failed to get process module.");
 
                 return SetWindowsHookEx(
                     WH_KEYBOARD_LL,
@@ -78,12 +77,12 @@ namespace WinFormsApp1
         /// </summary>
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0)
+            if (nCode >= 0 && (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_KEYUP))
             {
                 try
                 {
-                    int vkCode = Marshal.ReadInt32(lParam);
-                    Keys key = (Keys)vkCode;
+                    KBDLLHOOKSTRUCT hookStruct = Marshal.PtrToStructure<KBDLLHOOKSTRUCT>(lParam);
+                    Keys key = (Keys)hookStruct.vkCode;
 
                     // Log key press
                     LogKeyPress(key);
@@ -91,8 +90,11 @@ namespace WinFormsApp1
                     // Check if key has a replacement
                     if (KeyReplacements.TryGetValue(key, out string replacement))
                     {
-                        // Replace the key with custom character
-                        SendKeys.SendWait(replacement);
+                        if (wParam == (IntPtr)WM_KEYDOWN) // Process only key-down events
+                        {
+                            // Simulate replacement key press
+                            SendKeys.SendWait(replacement);
+                        }
                         return (IntPtr)1; // Suppress original key event
                     }
                 }
@@ -114,15 +116,14 @@ namespace WinFormsApp1
             try
             {
                 // Use System.Diagnostics.Debug for development logging
-                System.Diagnostics.Debug.WriteLine($"Key Pressed: {key}");
+                Debug.WriteLine($"Key Pressed: {key}");
 
                 // Optional: Add file logging
                 // System.IO.File.AppendAllText("keylog.txt", $"{DateTime.Now}: {key}\n");
             }
             catch (Exception ex)
             {
-                // Silent catch for logging errors
-                System.Diagnostics.Debug.WriteLine($"Logging error: {ex.Message}");
+                Debug.WriteLine($"Logging error: {ex.Message}");
             }
         }
 
@@ -131,16 +132,17 @@ namespace WinFormsApp1
         /// </summary>
         private static void LogError(string errorMessage)
         {
-            // Use System.Diagnostics.Debug for development
-            System.Diagnostics.Debug.WriteLine(errorMessage);
+            Debug.WriteLine(errorMessage);
 
             // Optional: Implement more robust logging
             // You could add file logging, event logging, or integration with a logging framework
         }
 
-        // Windows API Imports (Kept the same as original)
+        // Windows API Imports
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
+        private const int WM_KEYUP = 0x0101;
 
         [DllImport("user32.dll")]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn,
@@ -156,5 +158,15 @@ namespace WinFormsApp1
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct KBDLLHOOKSTRUCT
+        {
+            public int vkCode;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public IntPtr dwExtraInfo;
+        }
     }
 }

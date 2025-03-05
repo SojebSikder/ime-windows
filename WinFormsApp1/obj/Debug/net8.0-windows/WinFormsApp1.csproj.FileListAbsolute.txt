@@ -14,3 +14,4 @@ C:\Users\sojebsikder\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-win
 C:\Users\sojebsikder\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
 C:\Users\sojebsikder\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
 C:\Users\sojebsikder\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll
+C:\Users\sojebsikder\source\repos\WinFormsApp1\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json

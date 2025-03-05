@@ -11,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\sojebsikder\\source\\repos\\winformsapp1\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|C:\\Users\\sojebsikder\\source\\repos\\WinFormsApp1\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "WinFormsApp1\\Program.cs",
               "ToolTip": "C:\\Users\\sojebsikder\\source\\repos\\WinFormsApp1\\WinFormsApp1\\Program.cs",
               "RelativeToolTip": "WinFormsApp1\\Program.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAiwJ0AAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAAAKwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-05T05:51:59.729Z",
               "EditorCaption": ""
@@ -59,8 +59,7 @@
               "ToolTip": "C:\\Users\\sojebsikder\\source\\repos\\WinFormsApp1\\WinFormsApp1\\Form1.cs [Design]",
               "RelativeToolTip": "WinFormsApp1\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T05:48:58.289Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-03-05T05:48:58.289Z"
             }
           ]
         }
