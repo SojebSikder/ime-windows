@@ -1,13 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\All Programs\\Project\\c#\\ime-windows\\",
+  "WorkspaceRootPath": "D:\\AllPrograms\\Project\\c#\\ime-windows\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\all programs\\project\\c#\\ime-windows\\winformsapp1\\mainui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\mainui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\allprograms\\project\\c#\\ime-windows\\winformsapp1\\keymapeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\keymapeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\all programs\\project\\c#\\ime-windows\\winformsapp1\\mainui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\allprograms\\project\\c#\\ime-windows\\winformsapp1\\nativemethods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\nativemethods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\allprograms\\project\\c#\\ime-windows\\winformsapp1\\keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\allprograms\\project\\c#\\ime-windows\\winformsapp1\\layoutparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\layoutparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|d:\\allprograms\\project\\c#\\ime-windows\\winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|D:\\AllPrograms\\Project\\c#\\ime-windows\\winformsapp1\\mainui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{77A0D3AE-24E3-4F95-A096-1CB150A216A5}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\mainui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -23,23 +39,75 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainUI.cs",
-              "DocumentMoniker": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\MainUI.cs",
-              "RelativeDocumentMoniker": "WinFormsApp1\\MainUI.cs",
-              "ToolTip": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\MainUI.cs",
-              "RelativeToolTip": "WinFormsApp1\\MainUI.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB0AAAA4AAAAAAAAAA==",
+              "Title": "KeymapEditor.cs",
+              "DocumentMoniker": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\KeymapEditor.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\KeymapEditor.cs",
+              "ToolTip": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\KeymapEditor.cs",
+              "RelativeToolTip": "WinFormsApp1\\KeymapEditor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T14:46:14.9Z",
+              "WhenOpened": "2025-07-10T04:59:32.049Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "NativeMethods.cs",
+              "DocumentMoniker": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\NativeMethods.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\NativeMethods.cs",
+              "ToolTip": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\NativeMethods.cs",
+              "RelativeToolTip": "WinFormsApp1\\NativeMethods.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAGsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T04:59:17.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Keyboard.cs",
+              "DocumentMoniker": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\Keyboard.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\Keyboard.cs",
+              "ToolTip": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\Keyboard.cs",
+              "RelativeToolTip": "WinFormsApp1\\Keyboard.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T04:59:08.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LayoutParser.cs",
+              "DocumentMoniker": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\LayoutParser.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\LayoutParser.cs",
+              "ToolTip": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\LayoutParser.cs",
+              "RelativeToolTip": "WinFormsApp1\\LayoutParser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T04:58:02.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\Program.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\Program.cs",
+              "ToolTip": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\Program.cs",
+              "RelativeToolTip": "WinFormsApp1\\Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T16:28:16.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "MainUI.cs [Design]",
-              "DocumentMoniker": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\MainUI.cs",
+              "DocumentMoniker": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\MainUI.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\MainUI.cs",
-              "ToolTip": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\MainUI.cs [Design]",
+              "ToolTip": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\MainUI.cs [Design]",
               "RelativeToolTip": "WinFormsApp1\\MainUI.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-05T14:45:29.057Z",

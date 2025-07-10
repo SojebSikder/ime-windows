@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace WinFormsApp1
+﻿namespace WinFormsApp1
 {
     public partial class KeymapEditor : Form
     {
@@ -21,7 +11,7 @@ namespace WinFormsApp1
 
         private void LoadMappings()
         {
-            keyMappings = new Dictionary<Keys, string>(Program.KeyReplacements);
+            keyMappings = new Dictionary<Keys, string>(LayoutParser.KeyReplacements);
             dataGridView1.Rows.Clear();
 
             foreach (var pair in keyMappings)
@@ -45,7 +35,7 @@ namespace WinFormsApp1
                 }
             }
 
-            Program.SaveKeyMappings(newMappings);
+            LayoutParser.SaveKeyMappings(newMappings);
             MessageBox.Show("Key mappings saved!");
         }
     }

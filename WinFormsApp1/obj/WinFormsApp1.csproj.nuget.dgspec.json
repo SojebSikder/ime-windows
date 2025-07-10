@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj": {}
+    "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj": {}
   },
   "projects": {
-    "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj": {
+    "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectUniqueName": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj",
         "projectName": "WinFormsApp1",
-        "projectPath": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectPath": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\WinFormsApp1.csproj",
         "packagesPath": "C:\\Users\\sojeb\\.nuget\\packages\\",
-        "outputPath": "D:\\All Programs\\Project\\c#\\ime-windows\\WinFormsApp1\\obj\\",
+        "outputPath": "D:\\AllPrograms\\Project\\c#\\ime-windows\\WinFormsApp1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\ProgramData\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\sojeb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -64,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

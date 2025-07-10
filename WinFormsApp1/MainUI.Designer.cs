@@ -74,6 +74,7 @@
             Controls.Add(menu_button);
             Name = "MainUI";
             Text = "MainUI";
+            TopMost = true;
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
