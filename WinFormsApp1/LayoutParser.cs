@@ -3,18 +3,21 @@ using System.Text.Json;
 
 namespace WinFormsApp1
 {
+    public class KeyEntry
+    {
+        public required string vkCode { get; set; }
+        public required string Normal { get; set; }
+        public required string Shift { get; set; }
+    }
+
+    public class KeyboardLayout
+    {
+        public required List<KeyEntry> keys { get; set; }
+    }
+
     internal class LayoutParser
     {
-        // Dictionary to map key replacements
-        //private static readonly Dictionary<Keys, string> KeyReplacements = new Dictionary<Keys, string>
-        //{
-        //    { Keys.A, "α" },
-        //    { Keys.B, "β" },
-        //    { Keys.C, "γ" }
-        //    // Add more key mappings as needed
-        //};
-
-        public static Dictionary<Keys, string> KeyReplacements = new Dictionary<Keys, string>();
+        public static Dictionary<Keys, KeyEntry> KeyReplacements = new Dictionary<Keys, KeyEntry>();
 
         /// <summary>
         /// Loads key mappings from a JSON file.
@@ -24,19 +27,41 @@ namespace WinFormsApp1
             try
             {
                 string filePath = "Resources/Keymap/keyMappings.json";
+
                 if (File.Exists(filePath))
                 {
                     string json = File.ReadAllText(filePath);
-                    Dictionary<string, string> mappings = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-                    KeyReplacements.Clear();
-
-                    foreach (var pair in mappings)
+                    KeyboardLayout layout = JsonSerializer.Deserialize<KeyboardLayout>(json);
+                    if (layout == null || layout.keys == null)
                     {
-                        if (Enum.TryParse(pair.Key, out Keys key))
+                        Debug.WriteLine(json);
+                        Debug.WriteLine("Invalid layout data.");
+                        return;
+                    }
+                    KeyReplacements.Clear();
+                    Debug.WriteLine("layout data",layout);
+                    if (layout != null)
+                    {
+                        foreach (var entry in layout.keys)
                         {
-                            KeyReplacements[key] = pair.Value;
+                            if (Enum.TryParse(entry.vkCode, out Keys key))
+                            {
+                                KeyReplacements[key] = new KeyEntry
+                                {
+                                    vkCode = entry.vkCode,
+                                    Normal = entry.Normal,
+                                    Shift = entry.Shift
+                                };
+                            }
                         }
                     }
+
+
+                    Debug.WriteLine("Key mappings loaded successfully.");
+                }
+                else
+                {
+                    Debug.WriteLine("Key mappings file not found.");
                 }
             }
             catch (Exception ex)
@@ -48,20 +73,33 @@ namespace WinFormsApp1
         /// <summary>
         /// Saves key mappings to a JSON file.
         /// </summary>
-        public static void SaveKeyMappings(Dictionary<Keys, string> mappings)
+        public static void SaveKeyMappings(Dictionary<Keys, KeyEntry> mappings)
         {
             try
             {
                 string filePath = "Resources/Keymap/keyMappings.json";
-                var jsonMappings = new Dictionary<string, string>();
+
+                var layout = new KeyboardLayout
+                {
+                    keys = new List<KeyEntry>()
+                };
 
                 foreach (var pair in mappings)
                 {
-                    jsonMappings[pair.Key.ToString()] = pair.Value;
+                    layout.keys.Add(new KeyEntry
+                    {
+                        vkCode = pair.Key.ToString(),
+                        Normal = pair.Value.Normal,
+                        Shift = pair.Value.Shift
+                    });
                 }
 
-                File.WriteAllText(filePath, JsonSerializer.Serialize(jsonMappings, new JsonSerializerOptions { WriteIndented = true }));
-                KeyReplacements = new Dictionary<Keys, string>(mappings);
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                File.WriteAllText(filePath, JsonSerializer.Serialize(layout, options));
+
+                KeyReplacements = new Dictionary<Keys, KeyEntry>(mappings);
+
+                Debug.WriteLine("Key mappings saved successfully.");
             }
             catch (Exception ex)
             {

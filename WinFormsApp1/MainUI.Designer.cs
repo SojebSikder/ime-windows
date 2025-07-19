@@ -75,6 +75,7 @@
             Name = "MainUI";
             Text = "MainUI";
             TopMost = true;
+            Load += MainUI_Load;
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }

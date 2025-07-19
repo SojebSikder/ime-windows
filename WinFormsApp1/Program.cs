@@ -22,6 +22,7 @@ namespace WinFormsApp1
                 // Load key mappings from JSON file
                 LayoutParser.LoadKeyMappings();
 
+                NativeMethods.InitializeSendTimer();
                 // Set up global keyboard hook
                 hookID = NativeMethods.SetHook(NativeMethods.HookCallback);
 

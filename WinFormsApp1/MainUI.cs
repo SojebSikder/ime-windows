@@ -35,5 +35,10 @@ namespace WinFormsApp1
         {
             Application.Exit();
         }
+
+        private void MainUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

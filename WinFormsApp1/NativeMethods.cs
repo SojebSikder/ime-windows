@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
@@ -16,7 +16,6 @@ namespace WinFormsApp1
         public delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
-        private const int WM_KEYUP = 0x0101;
 
         [DllImport("user32.dll")]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn,
@@ -33,6 +32,9 @@ namespace WinFormsApp1
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
 
+        [DllImport("user32.dll")]
+        private static extern short GetKeyState(int nVirtKey);
+
         [StructLayout(LayoutKind.Sequential)]
         private struct KBDLLHOOKSTRUCT
         {
@@ -43,14 +45,10 @@ namespace WinFormsApp1
             public IntPtr dwExtraInfo;
         }
 
-        // buffer/internal temp text
         private static string previousString = string.Empty;
         private static string currentString = string.Empty;
         private static readonly List<char> inputBuffer = new List<char>();
 
-        /// <summary>
-        /// Sets up the low-level keyboard hook
-        /// </summary>
         public static IntPtr SetHook(LowLevelKeyboardProc proc)
         {
             try
@@ -75,72 +73,144 @@ namespace WinFormsApp1
             }
         }
 
-        /// <summary>
-        /// Callback for low-level keyboard events
-        /// </summary>
+        private static bool isSending = false;
+        private static Queue<string> sendQueue = new Queue<string>();
+        private static System.Windows.Forms.Timer sendTimer;
+
+        public static void InitializeSendTimer()
+        {
+            sendTimer = new System.Windows.Forms.Timer();
+            sendTimer.Interval = 10; // 10 ms delay
+            sendTimer.Tick += (s, e) =>
+            {
+                if (sendQueue.Count > 0)
+                {
+                    string keys = sendQueue.Dequeue();
+                    SendKeys.SendWait(keys);
+                }
+                else
+                {
+                    sendTimer.Stop();
+                    isSending = false;
+                }
+            };
+        }
+
+
+        private static bool _suppressNextA = false;
+        private static bool _suppressNextB = false;
+        private static bool suppressNext = false;
+
+
+        static int counter = 0;
         public static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && (wParam == (IntPtr)WM_KEYDOWN))
+            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
                 try
                 {
                     KBDLLHOOKSTRUCT hookStruct = Marshal.PtrToStructure<KBDLLHOOKSTRUCT>(lParam);
                     Keys key = (Keys)hookStruct.vkCode;
 
-                    if (!Keyboard.IsModifierKey(key))
-                    {
-                        char? keyChar = Keyboard.KeyToPrintableChar(key);
-                        if (keyChar.HasValue)
-                        {
-                            previousString = currentString;
-                            inputBuffer.Add(keyChar.Value);
-                            currentString = new string(inputBuffer.ToArray());
-                        }
-                    }
-                    if (key == Keys.Space || key == Keys.Enter)
-                    {
-                        Debug.WriteLine("clearing");
-                        previousString = "";
-                        inputBuffer.Clear();
-                        currentString = string.Empty;
-                    }
+                    // Check if shift is pressed
+                    bool isShiftPressed = (GetKeyState((int)Keys.ShiftKey) & 0x8000) != 0;
+                    bool isCtrlPressed = (GetKeyState((int)Keys.ControlKey) & 0x8000) != 0;
+                    bool isAltPressed = (GetKeyState((int)Keys.Menu) & 0x8000) != 0;
 
-                    if (LayoutParser.KeyReplacements.TryGetValue(key, out string replacement))
+                    if (!isCtrlPressed && !isAltPressed)
                     {
-                        // Contextual logic: if "আ" and there is previous char, replace with "া"
-                        if (replacement == "আ" && !string.IsNullOrEmpty(previousString))
+                        if (!Keyboard.IsModifierKey(key))
                         {
-                            replacement = "া";
-
-                            if (inputBuffer.Count > 0)
+                            char? keyChar = Keyboard.KeyToPrintableChar(key);
+                            if (keyChar.HasValue)
                             {
-                                inputBuffer[inputBuffer.Count - 1] = 'া';
+                                if (!suppressNext)
+                                {
+                                    previousString = currentString;
+                                    inputBuffer.Add(keyChar.Value);
+                                    currentString = new string(inputBuffer.ToArray());
+
+                                    counter++;
+                                    Debug.WriteLine(counter);
+                                }
+                            }
+                        }
+
+                        // Clear buffer on whitespace or enter
+                        if (key == Keys.Space || key == Keys.Enter)
+                        {
+                            string bn = Keyboard.ExecutePhonetic(currentString);
+
+                            string temp = currentString;
+
+                            // remove buffer
+                            previousString = "";
+                            inputBuffer.Clear();
+                            currentString = string.Empty;
+
+                            if (_suppressNextB)
+                            {
+                                _suppressNextB = false;
                             }
                             else
                             {
-                                inputBuffer.Add('া');
+                                _suppressNextB = true;
+                                suppressNext = true;
+
+                                // Erase English characters by sending backspaces
+                                for (int i = 0; i < temp.Length; i++)
+                                {
+                                    SendKeys.SendWait("{BACKSPACE}");
+                                }
+
+                                SendKeys.SendWait(bn);
+
+                                SendKeys.SendWait("{BACKSPACE}");
+                                SendKeys.SendWait(" ");
+
+                                suppressNext = false;
+
+                                return (IntPtr)1;
                             }
-
-                            currentString = new string(inputBuffer.ToArray());
                         }
-                        else
+
+                        // if delete or backspace, remove last character
+                        if (key == Keys.Back || key == Keys.Delete)
                         {
-                            // Default behavior
-                            currentString = replacement;
-                            inputBuffer.Clear();
-                            foreach (char c in replacement)
-                                inputBuffer.Add(c);
+                            if (inputBuffer.Count > 0)
+                            {
+                                inputBuffer.RemoveAt(inputBuffer.Count - 1);
+                                currentString = new string(inputBuffer.ToArray());
+                            }
+                            Debug.WriteLine(new string(inputBuffer.ToArray()));
                         }
 
-                        Debug.WriteLine($"Key {key} replaced with {replacement}");
-                        SendKeys.SendWait(replacement);
-                        return (IntPtr)1; // Suppress original key
+
+                        if (LayoutParser.KeyReplacements.TryGetValue(key, out var banglaKey))
+                        {
+                            if (_suppressNextA)
+                            {
+                                // Suppress this key as it's triggered by SendKeys
+                                _suppressNextA = false;
+                            }
+                            else
+                            {
+                                _suppressNextA = true;
+
+                                string enChar = key.ToString().ToLower();
+                                suppressNext = true;
+                                SendKeys.Send(enChar);
+                                suppressNext = false;
+                                return (IntPtr)1;
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error in keyboard hook callback: {ex.Message}");
                 }
+
             }
 
             return CallNextHookEx(hookID, nCode, wParam, lParam);
